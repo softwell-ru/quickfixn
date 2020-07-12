@@ -23,19 +23,19 @@ jobs:
           dotnet pack -c Release -o ../out
           cd ../Messages/FIX40
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX41
+          cd ../FIX41
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX42
+          cd ../FIX42
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX43
+          cd ../FIX43
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX44
+          cd ../FIX44
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX50
+          cd ../FIX50
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX50SP1
+          cd ../FIX50SP1
           dotnet pack -c Release -o ../../out
-          cd ../Messages/FIX50SP2
+          cd ../FIX50SP2
           dotnet pack -c Release -o ../../out
         
       - name: Push generated package to GitHub registry
