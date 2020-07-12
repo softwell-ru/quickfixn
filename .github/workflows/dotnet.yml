@@ -1,0 +1,33 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Setup .NET Core @ Latest
+        uses: actions/setup-dotnet@v1
+        with:
+          source-url: https://nuget.pkg.github.com/softwell-ru/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build solution and generate NuGet package
+        run: |
+          dotnet pack QuickFIXn/QuickFIX.csproj -c Release -o out
+          dotnet pack Messages/FIX40/QuickFix.FIX40.csproj -c Release -o out
+          dotnet pack Messages/FIX41/QuickFix.FIX41.csproj -c Release -o out
+          dotnet pack Messages/FIX42/QuickFix.FIX42.csproj -c Release -o out
+          dotnet pack Messages/FIX43/QuickFix.FIX43.csproj -c Release -o out
+          dotnet pack Messages/FIX44/QuickFix.FIX44.csproj -c Release -o out
+          dotnet pack Messages/FIX50/QuickFix.FIX50.csproj -c Release -o out
+          dotnet pack Messages/FIX50SP1/QuickFix.FIX50SP1.csproj -c Release -o out
+          dotnet pack Messages/FIX50SP2/QuickFix.FIX50SP2.csproj -c Release -o out
+
+      - name: Push generated package to GitHub registry
+        run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true
