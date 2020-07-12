@@ -19,15 +19,24 @@ jobs:
 
       - name: Build solution and generate NuGet package
         run: |
-          dotnet pack ./QuickFIXn/QuickFIX.csproj -c Release -o out
-          dotnet pack ./Messages/FIX40/QuickFix.FIX40.csproj -c Release -o out
-          dotnet pack ./Messages/FIX41/QuickFix.FIX41.csproj -c Release -o out
-          dotnet pack ./Messages/FIX42/QuickFix.FIX42.csproj -c Release -o out
-          dotnet pack ./Messages/FIX43/QuickFix.FIX43.csproj -c Release -o out
-          dotnet pack ./Messages/FIX44/QuickFix.FIX44.csproj -c Release -o out
-          dotnet pack ./Messages/FIX50/QuickFix.FIX50.csproj -c Release -o out
-          dotnet pack ./Messages/FIX50SP1/QuickFix.FIX50SP1.csproj -c Release -o out
-          dotnet pack ./Messages/FIX50SP2/QuickFix.FIX50SP2.csproj -c Release -o out
-
+          cd QuickFIXn
+          dotnet pack -c Release -o ../out
+          cd ../Messages/FIX40
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX41
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX42
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX43
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX44
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX50
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX50SP1
+          dotnet pack -c Release -o ../../out
+          cd ../Messages/FIX50SP2
+          dotnet pack -c Release -o ../../out
+        
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true
