@@ -18,31 +18,44 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Build QuickFIXn
-        run: cd QuickFIXn
+        run: | 
+          cd QuickFIXn
           dotnet pack -c Release -o ../out
       - name: Build FIX40
-        run: cd Messages/FIX40
+        run: | 
+          cd Messages/FIX40
           dotnet pack -c Release -o ../out
       - name: Build FIX41
-        run: cd Messages/FIX41
+        run: |
+          cd Messages/FIX41
           dotnet pack -c Release -o ../out
       - name: Build FIX42
-        run: cd Messages/FIX42
+        run: |
+          cd Messages/FIX42
           dotnet pack -c Release -o ../out
       - name: Build FIX43
-        run: cd Messages/FIX43
-          dotnet pack -c Release -o ../out                
+        run: |
+          cd Messages/FIX43
+          dotnet pack -c Release -o ../out
       - name: Build FIX44
-        run: cd Messages/FIX44
+        run: |
+          cd Messages/FIX44
+          dotnet pack -c Release -o ../out
       - name: Build FIX50
-        run: cd Messages/FIX50
+        run: |
+          cd Messages/FIX50
           dotnet pack -c Release -o ../out
       - name: Build FIX50SP1
-        run: cd Messages/FIX50SP1
+        run: |
+          cd Messages/FIX50SP1
           dotnet pack -c Release -o ../out
       - name: Build FIX50SP2
-        run: cd Messages/FIX50SP2
+        run: |
+          cd Messages/FIX50SP2
           dotnet pack -c Release -o ../out
 
       - name: Push QuickFIXn to GitHub registry
         run: dotnet nuget push ./out/* --skip-duplicate --no-symbols true -s "https://nuget.pkg.github.com/softwell-ru/index.json"
+
+      - name: Push Messages to GitHub registry
+        run: dotnet nuget push ./Messages/out/* --skip-duplicate --no-symbols true -s "https://nuget.pkg.github.com/softwell-ru/index.json"
