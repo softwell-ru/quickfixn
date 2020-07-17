@@ -15,7 +15,6 @@
     <RootNamespace>QuickFix</RootNamespace>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/quickfixn</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>FIX, QuickFIX, QuickFIX/n</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
